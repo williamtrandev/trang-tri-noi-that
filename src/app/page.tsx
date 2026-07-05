@@ -15,6 +15,7 @@ import { WhyUsBento } from "@/components/sections/why-us-bento";
 import { ProductCategoriesSection } from "@/components/sections/product-categories";
 import { SolutionsOverview } from "@/components/sections/solutions-overview";
 import { MaterialsMarquee } from "@/components/sections/materials-marquee";
+import { ShowcaseBand } from "@/components/sections/showcase-band";
 import { ProcessSteps } from "@/components/sections/process-steps";
 import { Testimonials } from "@/components/sections/testimonials";
 import { CtaBand } from "@/components/sections/cta-band";
@@ -37,13 +38,14 @@ export default async function HomePage() {
       <MaterialsMarquee />
       <ServicesInteractive services={services} />
       <FeaturedProjects projects={projects} />
+      <ShowcaseBand />
       <WhyUsBento />
       <StatsBand />
       <ProductCategoriesSection categories={categories} />
       <SolutionsOverview solutions={solutions} />
-      <ProcessSteps steps={homeProcess} />
+      <ProcessSteps steps={homeProcess} onSurface />
 
-      <section className="py-20 lg:py-28">
+      <section className="bg-surface-2 py-20 lg:py-28">
         <Container>
           <SectionHeading
             title="Niềm tin từ hàng nghìn gia đình và doanh nghiệp"

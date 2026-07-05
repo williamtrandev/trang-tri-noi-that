@@ -18,7 +18,7 @@ export function ServicesInteractive({ services }: { services: Service[] }) {
   const current = services[active];
 
   return (
-    <section className="py-20 lg:py-28">
+    <section className="bg-surface-2 py-20 lg:py-28">
       <Container>
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeading

@@ -9,7 +9,7 @@ import { Reveal } from "@/components/ui/reveal";
 
 export function ProductCategoriesSection({ categories }: { categories: ProductCategory[] }) {
   return (
-    <section className="bg-surface-2 py-20 lg:py-28">
+    <section className="py-20 lg:py-28">
       <Container>
         <SectionHeading
           eyebrow="Sản phẩm nội thất"

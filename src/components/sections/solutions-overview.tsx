@@ -9,7 +9,7 @@ import { Reveal } from "@/components/ui/reveal";
 
 export function SolutionsOverview({ solutions }: { solutions: Solution[] }) {
   return (
-    <section className="py-20 lg:py-28">
+    <section className="bg-surface-2 py-20 lg:py-28">
       <Container>
         <SectionHeading
           eyebrow="Giải pháp theo không gian"

@@ -5,20 +5,20 @@
 /*  Nguồn token duy nhất. Accent duy nhất = --brand (xanh rêu rừng).   */
 /* ------------------------------------------------------------------ */
 :root {
-  --surface: #fcfcfb; /* trắng ngà, không kem */
-  --surface-2: #f2f3f0; /* nền section xen kẽ */
-  --surface-3: #e9ebe6;
-  --ink: #101613; /* near-black ánh lục */
-  --ink-2: #1c2521;
-  --ink-muted: #5b655f; /* body phụ, đạt AA trên surface */
-  --line: #e4e6e1;
-  --line-strong: #d3d7ce;
-  --brand: #1f4d3a; /* accent DUY NHẤT */
-  --brand-hover: #173d2e;
-  --brand-soft: #eaf0ec;
-  --brand-foreground: #fcfcfb;
+  --surface: #fcfaf6; /* trắng ấm */
+  --surface-2: #f0ebe1; /* tông đá/gỗ ấm — tách section rõ + ấm cúng */
+  --surface-3: #e7e0d2;
+  --ink: #131711; /* near-black ánh lục ấm */
+  --ink-2: #1e241b;
+  --ink-muted: #5c5f52; /* body phụ, đạt AA trên nền ấm */
+  --line: #e6dfd2;
+  --line-strong: #d6cdba;
+  --brand: #2f5d3f; /* xanh rêu rừng — accent DUY NHẤT */
+  --brand-hover: #244a32;
+  --brand-soft: #e7efe6;
+  --brand-foreground: #fcfaf6;
   --wood: #b98a5e; /* CHỈ minh họa vật liệu, không dùng làm accent UI */
-  --gold: #c9a15f;
+  --gold: #c19a5b;
 }
 
 @theme inline {
@@ -116,16 +116,9 @@ p {
   background-color: color-mix(in srgb, var(--ink) 58%, transparent);
 }
 
-/* Ảnh: chưa có ảnh thật → dùng đen trắng editorial cho đồng bộ, có chủ đích.
- *  Khôi phục màu khi hover (thẻ tương tác). Nền chờ tránh chớp trắng. */
+/* Ảnh nội thất màu tự nhiên; nền chờ tránh chớp trắng. */
 main img {
   background-color: var(--surface-2);
-  filter: grayscale(1) contrast(1.05) brightness(1.01);
-  transition: filter 0.6s var(--ease-out-expo);
-}
-main a:hover img,
-main button:hover img {
-  filter: grayscale(0) contrast(1.02);
 }
 
 ::selection {
