@@ -1,26 +1,212 @@
 @import "tailwindcss";
 
+/* ------------------------------------------------------------------ */
+/*  DESIGN TOKENS — Forest & Bone                                      */
+/*  Nguồn token duy nhất. Accent duy nhất = --brand (xanh rêu rừng).   */
+/* ------------------------------------------------------------------ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --surface: #fcfcfb; /* trắng ngà, không kem */
+  --surface-2: #f2f3f0; /* nền section xen kẽ */
+  --surface-3: #e9ebe6;
+  --ink: #101613; /* near-black ánh lục */
+  --ink-2: #1c2521;
+  --ink-muted: #5b655f; /* body phụ, đạt AA trên surface */
+  --line: #e4e6e1;
+  --line-strong: #d3d7ce;
+  --brand: #1f4d3a; /* accent DUY NHẤT */
+  --brand-hover: #173d2e;
+  --brand-soft: #eaf0ec;
+  --brand-foreground: #fcfcfb;
+  --wood: #b98a5e; /* CHỈ minh họa vật liệu, không dùng làm accent UI */
+  --gold: #c9a15f;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-muted: var(--ink-muted);
+  --color-line: var(--line);
+  --color-line-strong: var(--line-strong);
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-brand-soft: var(--brand-soft);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-wood: var(--wood);
+  --color-gold: var(--gold);
+
+  --color-background: var(--surface);
+  --color-foreground: var(--ink);
+
+  --font-sans: var(--font-be-vietnam), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-be-vietnam), ui-sans-serif, system-ui, sans-serif;
+
+  /* Radius lock: nút/input 12px, card/ảnh 16px, container lớn 28px */
+  --radius-btn: 12px;
+  --radius-card: 16px;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Bóng đổ tint theo màu mực (không dùng đen thuần) */
+  --shadow-sm: 0 1px 2px rgba(16, 22, 19, 0.06), 0 1px 3px rgba(16, 22, 19, 0.04);
+  --shadow-md: 0 8px 24px -12px rgba(16, 22, 19, 0.18);
+  --shadow-lg: 0 24px 60px -28px rgba(16, 22, 19, 0.32);
+  --shadow-brand: 0 20px 50px -24px rgba(31, 77, 58, 0.45);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  border-color: var(--line);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--surface);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  line-height: 1.75; /* tiếng Việt cần thoáng hơn */
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Sans hiện đại: tracking chặt tạo sức nặng kiểu SaaS cao cấp */
+h1,
+h2,
+h3,
+h4,
+.font-display {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+h3,
+h4 {
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+/* Display rất lớn: leading & tracking cực chặt cho hero */
+.text-display {
+  line-height: 1.0;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Lớp phủ đặc cho ảnh (thay cho gradient) */
+.scrim-ink {
+  background-color: color-mix(in srgb, var(--ink) 42%, transparent);
+}
+.scrim-ink-strong {
+  background-color: color-mix(in srgb, var(--ink) 58%, transparent);
+}
+
+/* Ảnh: chưa có ảnh thật → dùng đen trắng editorial cho đồng bộ, có chủ đích.
+ *  Khôi phục màu khi hover (thẻ tương tác). Nền chờ tránh chớp trắng. */
+main img {
+  background-color: var(--surface-2);
+  filter: grayscale(1) contrast(1.05) brightness(1.01);
+  transition: filter 0.6s var(--ease-out-expo);
+}
+main a:hover img,
+main button:hover img {
+  filter: grayscale(0) contrast(1.02);
+}
+
+::selection {
+  background: var(--brand);
+  color: var(--brand-foreground);
+}
+
+/* Focus ring nhất quán trên mọi phần tử tương tác */
+:where(a, button, input, textarea, select, [tabindex]):focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Grain overlay tinh tế (cố định, không repaint khi cuộn) */
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.02;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Marquee (tối đa 1/trang) */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: marquee 45s linear infinite;
+}
+
+/* Ken Burns rất chậm cho ảnh hero */
+@keyframes kenburns {
+  from {
+    transform: scale(1.02);
+  }
+  to {
+    transform: scale(1.12);
+  }
+}
+.ken-burns {
+  animation: kenburns 20s ease-out forwards;
+  transform-origin: center;
+}
+
+/* Overline editorial */
+.overline {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-marquee {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
